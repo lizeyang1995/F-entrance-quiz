@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../style/home.scss';
+import '../style/students.scss';
 import Student from './Students';
 
 const myHeaders = new Headers({
@@ -42,9 +43,11 @@ class Home extends Component {
         </div>
         <div className="student-list">
           <h3>学员列表</h3>
-          {this.state.students.map((student) => {
-            return <Student key={student.id} id={student.id} studentName={student.name} />;
-          })}
+          <section className="all-student">
+            {this.state.students.map((student) => {
+              return <Student key={student.id} id={student.id} studentName={student.name} />;
+            })}
+          </section>
         </div>
       </div>
     );
