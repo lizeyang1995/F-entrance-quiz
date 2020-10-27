@@ -1,0 +1,17 @@
+@import './variables';
+
+.group {
+  border: 1px solid lightgray;
+}
+
+.group .group-name {
+  text-align: center;
+  background-color: $gray;
+  color: white;
+  margin: 0;
+}
+
+.group .students {
+  display: flex;
+  padding: 10px;
+}
