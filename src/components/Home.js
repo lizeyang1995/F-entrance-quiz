@@ -1,7 +1,36 @@
 import React, { Component } from 'react';
 import '../style/home.scss';
+import Student from './Students';
+
+const myHeaders = new Headers({
+  'Access-Control-Allow-Origin': '*',
+  'Content-Type': 'application/json',
+  Accept: 'application/json',
+});
+const api = 'http://localhost:8080/students';
 
 class Home extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      students: [],
+    };
+  }
+
+  componentDidMount = () => {
+    fetch(api, {
+      method: 'GET',
+      headers: myHeaders,
+      mode: 'cors',
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        this.setState({
+          students: data,
+        });
+      });
+  };
+
   render() {
     return (
       <div className="home">
@@ -13,6 +42,9 @@ class Home extends Component {
         </div>
         <div className="student-list">
           <h3>学员列表</h3>
+          {this.state.students.map((student) => {
+            return <Student key={student.id} id={student.id} studentName={student.name} />;
+          })}
         </div>
       </div>
     );
