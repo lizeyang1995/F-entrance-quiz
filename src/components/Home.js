@@ -3,6 +3,7 @@ import '../style/home.scss';
 import '../style/students.scss';
 import Student from './Students';
 import Group from './Group';
+import AddStudent from './AddStudent';
 
 const myHeaders = new Headers({
   'Access-Control-Allow-Origin': '*',
@@ -28,7 +29,6 @@ class Home extends Component {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         this.setState({
           randomGroup: data,
         });
@@ -76,6 +76,7 @@ class Home extends Component {
             {this.state.students.map((student) => {
               return <Student key={student.id} id={student.id} studentName={student.name} />;
             })}
+            <AddStudent />
           </section>
         </div>
       </div>
