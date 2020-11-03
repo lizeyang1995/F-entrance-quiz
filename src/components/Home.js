@@ -5,6 +5,7 @@ import Student from './Students';
 import Group from './Group';
 import AddStudent from './AddStudent';
 
+// TODO GTB-4: - API请求相关内容可以抽到Api请求层中，解耦请求与渲染
 const myHeaders = new Headers({
   'Access-Control-Allow-Origin': '*',
   'Content-Type': 'application/json',
@@ -35,6 +36,7 @@ class Home extends Component {
       });
   };
 
+  // TODO GTB-4: - 页面加载后也应该请求分组列表，通过列表数据判断是否应该显示
   componentDidMount = () => {
     fetch(api, {
       method: 'GET',
@@ -50,18 +52,22 @@ class Home extends Component {
   };
 
   render() {
+    // TODO GTB-3: - 不用使用count，使用map的index即可
     let count = 0;
 
     return (
+      // TODO GTB-3: - 语义化标签的使用还可以加强
       <div className="home">
         <div className="group-list">
           <div>
+            {/* TODO GTB-3: - 这里可以直接用header标签 */}
             <section className="header">
               <h3>分组列表</h3>
               <button type="button" onClick={this.randomGroup}>
                 分组学员
               </button>
             </section>
+            {/* TODO GTB-4: - 分组列表可以直接作为一个组件，而不是Group */}
             <section>
               {this.state.randomGroup.map((groups) => {
                 count += 1;
@@ -70,6 +76,7 @@ class Home extends Component {
             </section>
           </div>
         </div>
+        {/* TODO GTB-4: - 学员列表可以作为一个组件 */}
         <div className="student-list">
           <h3>学员列表</h3>
           <section className="all-student">
