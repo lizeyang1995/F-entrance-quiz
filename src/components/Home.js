@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../style/home.scss';
 import '../style/students.scss';
-import Student from './Students';
+import Student from './Student';
 import Group from './Group';
 import AddStudent from './AddStudent';
 
