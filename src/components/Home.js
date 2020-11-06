@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import '../style/home.scss';
 import '../style/students.scss';
-import Group from './Group';
 import Students from './Students';
+import Groups from './Groups';
 
 // TODO GTB-4: - API请求相关内容可以抽到Api请求层中，解耦请求与渲染
 const myHeaders = new Headers({
@@ -52,7 +52,7 @@ class Home extends Component {
 
   render() {
     // TODO GTB-3: - 不用使用count，使用map的index即可
-    let count = 0;
+    // let count = 0;
 
     return (
       // TODO GTB-3: - 语义化标签的使用还可以加强
@@ -67,12 +67,13 @@ class Home extends Component {
               </button>
             </section>
             {/* TODO GTB-4: - 分组列表可以直接作为一个组件，而不是Group */}
-            <section>
-              {this.state.randomGroup.map((groups) => {
-                count += 1;
-                return <Group key={groups[0].name} students={groups} count={count} />;
-              })}
-            </section>
+            {/* <section> */}
+            {/*  {this.state.randomGroup.map((groups) => { */}
+            {/*    count += 1; */}
+            {/*    return <Group key={groups[0].name} students={groups} count={count} />; */}
+            {/*  })} */}
+            {/* </section> */}
+            <Groups randomGroup={this.state.randomGroup} />
           </div>
         </div>
         {/* TODO GTB-4: - 学员列表可以作为一个组件 */}
