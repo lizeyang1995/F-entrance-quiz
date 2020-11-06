@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import '../style/home.scss';
 import '../style/students.scss';
-import Student from './Student';
 import Group from './Group';
-import AddStudent from './AddStudent';
+import Students from './Students';
 
 // TODO GTB-4: - API请求相关内容可以抽到Api请求层中，解耦请求与渲染
 const myHeaders = new Headers({
@@ -77,15 +76,16 @@ class Home extends Component {
           </div>
         </div>
         {/* TODO GTB-4: - 学员列表可以作为一个组件 */}
-        <div className="student-list">
-          <h3>学员列表</h3>
-          <section className="all-student">
-            {this.state.students.map((student) => {
-              return <Student key={student.id} id={student.id} studentName={student.name} />;
-            })}
-            <AddStudent />
-          </section>
-        </div>
+        {/* <div className="student-list"> */}
+        {/*  <h3>学员列表</h3> */}
+        {/*  <section className="all-student"> */}
+        {/*    {this.state.students.map((student) => { */}
+        {/*      return <Student key={student.id} id={student.id} studentName={student.name} />; */}
+        {/*    })} */}
+        {/*    <AddStudent /> */}
+        {/*  </section> */}
+        {/* </div> */}
+        <Students students={this.state.students} />
       </div>
     );
   }
