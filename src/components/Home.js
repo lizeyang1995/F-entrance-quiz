@@ -48,6 +48,17 @@ class Home extends Component {
           students: data,
         });
       });
+    fetch(randomGroupApi, {
+      method: 'GET',
+      headers: myHeaders,
+      mode: 'cors',
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        this.setState({
+          randomGroup: data,
+        });
+      });
   };
 
   render() {
