@@ -23,7 +23,7 @@ class Home extends Component {
 
   randomGroup = () => {
     fetch(randomGroupApi, {
-      method: 'GET',
+      method: 'POST',
       headers: myHeaders,
       mode: 'cors',
     })
@@ -67,26 +67,24 @@ class Home extends Component {
 
     return (
       // TODO GTB-3: - 语义化标签的使用还可以加强
-      <div className="home">
-        <div className="group-list">
-          <div>
-            {/* TODO GTB-3: - 这里可以直接用header标签 */}
-            <section className="header">
-              <h3>分组列表</h3>
-              <button type="button" onClick={this.randomGroup}>
-                分组学员
-              </button>
-            </section>
-            {/* TODO GTB-4: - 分组列表可以直接作为一个组件，而不是Group */}
-            {/* <section> */}
-            {/*  {this.state.randomGroup.map((groups) => { */}
-            {/*    count += 1; */}
-            {/*    return <Group key={groups[0].name} students={groups} count={count} />; */}
-            {/*  })} */}
-            {/* </section> */}
-            <Groups randomGroup={this.state.randomGroup} />
-          </div>
-        </div>
+      <article className="home">
+        <section className="group-list">
+          {/* TODO GTB-3: - 这里可以直接用header标签 */}
+          <section className="header">
+            <h3>分组列表</h3>
+            <button type="button" onClick={this.randomGroup}>
+              分组学员
+            </button>
+          </section>
+          {/* TODO GTB-4: - 分组列表可以直接作为一个组件，而不是Group */}
+          {/* <section> */}
+          {/*  {this.state.randomGroup.map((groups) => { */}
+          {/*    count += 1; */}
+          {/*    return <Group key={groups[0].name} students={groups} count={count} />; */}
+          {/*  })} */}
+          {/* </section> */}
+          <Groups randomGroup={this.state.randomGroup} />
+        </section>
         {/* TODO GTB-4: - 学员列表可以作为一个组件 */}
         {/* <div className="student-list"> */}
         {/*  <h3>学员列表</h3> */}
@@ -98,7 +96,7 @@ class Home extends Component {
         {/*  </section> */}
         {/* </div> */}
         <Students students={this.state.students} />
-      </div>
+      </article>
     );
   }
 }
