@@ -3,15 +3,9 @@ import '../style/home.scss';
 import '../style/students.scss';
 import Students from './Students';
 import Groups from './Groups';
+import { myHeaders, groupsApi, studentsApi } from './apiAction';
 
 // TODO GTB-4: - API请求相关内容可以抽到Api请求层中，解耦请求与渲染
-const myHeaders = new Headers({
-  'Access-Control-Allow-Origin': '*',
-  'Content-Type': 'application/json',
-  Accept: 'application/json',
-});
-const api = 'http://localhost:8080/students';
-const randomGroupApi = 'http://localhost:8080/groups';
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -22,7 +16,7 @@ class Home extends Component {
   }
 
   randomGroup = () => {
-    fetch(randomGroupApi, {
+    fetch(groupsApi, {
       method: 'POST',
       headers: myHeaders,
       mode: 'cors',
@@ -37,7 +31,7 @@ class Home extends Component {
 
   // TODO GTB-4: - 页面加载后也应该请求分组列表，通过列表数据判断是否应该显示
   componentDidMount = () => {
-    fetch(api, {
+    fetch(studentsApi, {
       method: 'GET',
       headers: myHeaders,
       mode: 'cors',
@@ -48,7 +42,7 @@ class Home extends Component {
           students: data,
         });
       });
-    fetch(randomGroupApi, {
+    fetch(groupsApi, {
       method: 'GET',
       headers: myHeaders,
       mode: 'cors',

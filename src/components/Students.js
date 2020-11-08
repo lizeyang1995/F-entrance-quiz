@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
 import Student from './Student';
 import '../style/addStudent.scss';
+import { myHeaders, studentsApi } from './apiAction';
 
-const myHeaders = new Headers({
-  'Access-Control-Allow-Origin': '*',
-  'Content-Type': 'application/json',
-  Accept: 'application/json',
-});
-const api = 'http://localhost:8080/students';
 class Students extends Component {
   constructor(props) {
     super(props);
@@ -34,7 +29,7 @@ class Students extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     if (event.keyCode === 13) {
-      fetch(api, {
+      fetch(studentsApi, {
         method: 'POST',
         headers: myHeaders,
         mode: 'cors',
