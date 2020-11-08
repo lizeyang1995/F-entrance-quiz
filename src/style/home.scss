@@ -6,24 +6,20 @@
   height: auto;
   background-color: $bg-gray;
   padding: 20px;
-}
-
-// TODO GTB-3: - scss中可以使用嵌套
-.home .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.home h3 {
-  font-weight: 800;
-}
-
-.home button {
-  background-color: $primary-color;
-  border: 0 solid;
-  color: $light-gray;
-  height: 30px;
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  h3 {
+    font-weight: 800;
+  }
+  button {
+    background-color: $primary-color;
+    border: 0 solid;
+    color: $light-gray;
+    height: 30px;
+  }
 }
 
 .all-student {
