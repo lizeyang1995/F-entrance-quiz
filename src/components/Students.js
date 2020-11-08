@@ -1,17 +1,65 @@
 import React, { Component } from 'react';
 import Student from './Student';
-import AddStudent from './AddStudent';
+import '../style/addStudent.scss';
 
+const myHeaders = new Headers({
+  'Access-Control-Allow-Origin': '*',
+  'Content-Type': 'application/json',
+  Accept: 'application/json',
+});
+const api = 'http://localhost:8080/students';
 class Students extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      students: [],
+      props,
+    };
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    const { students } = nextProps;
+    const { props } = prevState;
+    if (students !== props.students) {
+      return {
+        students,
+        props: {
+          students,
+        },
+      };
+    }
+    return null;
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    if (event.keyCode === 13) {
+      fetch(api, {
+        method: 'POST',
+        headers: myHeaders,
+        mode: 'cors',
+        body: event.target.value,
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          this.setState({
+            students: data,
+          });
+        });
+    }
+  };
+
   render() {
     return (
       <div className="student-list">
         <h3>学员列表</h3>
         <section className="all-student">
-          {this.props.students.map((student) => {
+          {this.state.students.map((student) => {
             return <Student key={student.id} id={student.id} studentName={student.name} />;
           })}
-          <AddStudent />
+          <section className="add-student">
+            <input placeholder="+添加学员" onKeyUp={this.handleSubmit} />
+          </section>
         </section>
       </div>
     );
